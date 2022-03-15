@@ -36,9 +36,9 @@ module.exports = {
   },
   mode: 'development',
   devServer: {
-    // proxy: { // proxy URLs to backend development server
-    //   '/api': 'http://localhost:3000'
-    // },
+    proxy: { // proxy URLs to backend development server
+      '/': 'http://localhost:3000'
+    },
     static: path.join(__dirname, './src'), // boolean | string | array | object, static file location
     compress: true, // enable gzip compression
     historyApiFallback: true, // true for index.html upon 404, object for multiple paths
