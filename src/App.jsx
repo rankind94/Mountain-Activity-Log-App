@@ -1,27 +1,36 @@
 import { Component } from 'react';
 import './App.css';
 import Header from './components/Header.jsx';
-// import TripsContainer from './components/TripsContainer';
+import TripsContainer from './components/TripsContainer.jsx';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mountains: ''
+      mountains: [],
+      users: []
     }
-    // this.fetchRequest = this.fetchRequest.bind(this);
+    this.createTripSubmit = this.createTripSubmit.bind(this);
   }
 
-  // fetchRequest = () => {
-  //   fetch('http://localhost:3000/')
-  //     .then(response => response.json())
-  //     .then(json => this.setState({mountains: json}));
-  // }
+
 
   componentDidMount() {
-    fetch('http://localhost:3000/')
+    fetch('/api')
       .then(response => response.json())
-      .then(json => this.setState({mountains: json}));
+      .then(json => {
+        console.log('json',json)
+        const newStateObj = {};
+        newStateObj['mountains'] = json[0].mountains;
+        newStateObj['users'] = json[1].users;
+        console.log(newStateObj)
+        this.setState({mountains: newStateObj.mountains, users: newStateObj.users})
+      });
+  }
+
+  createTripSubmit(e) {
+    e.preventDefault();
+    
   }
 
   render () {
@@ -29,7 +38,12 @@ class App extends Component {
     return (
       <div className='App'>
         <div><Header /></div>
-        {/* <div><TripsContainer /></div> */}
+        <div><TripsContainer 
+        createTripSubmit = {this.createTripSubmit} 
+        users = {this.state.users}
+        mountains = {this.state.mountains}
+         />
+         </div>
       </div>
     )
   }

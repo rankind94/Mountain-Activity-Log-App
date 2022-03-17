@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 
 const Header = (props) => {
   return (
-    <h1>Sup ho</h1>
+    <div>
+      <h1>Mountaineering Log</h1>
+    </div> 
   )
 }
 

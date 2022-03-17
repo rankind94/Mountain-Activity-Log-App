@@ -9,7 +9,10 @@ mountainsLogController.getMountains = (req, res, next) => {
     SELECT * FROM mountains
     `
   db.query(query)
-    .then((data) => res.locals.mountains = data.rows)
+    .then((data) => {
+      res.locals.starterInfo = [ { mountains:data.rows } ]
+    }
+   )
     .then(() => next())
     .catch((err) => {
       err.message = 'issue in get mountains middleware'
@@ -17,6 +20,18 @@ mountainsLogController.getMountains = (req, res, next) => {
     });
 }
 
+mountainsLogController.getUsers = (req, res, next) => {
+  const query = `
+    SELECT * FROM users
+    `
+  db.query(query)
+    .then((data) => res.locals.starterInfo.push({users: data.rows}))
+    .then(() => next())
+    .catch((err) => {
+      err.message = 'issue in get getUsers middleware'
+      next(err);
+    });
+}
 mountainsLogController.getCountryId = (req, res, next) => {
   const { country } = req.query;
   console.log(req.query)
@@ -214,6 +229,8 @@ mountainsLogController.getUserTrips = async (req, res, next) => {
       next(err)
     });
 }
+
+
 // mountainsLogController.addCountries = (req, res, next) => {
 //   let query = 'INSERT INTO countries (country) VALUES'
 //   countries.forEach((ele, index) => {

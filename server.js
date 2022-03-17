@@ -12,17 +12,17 @@ app.use(bodyParser.json());
 //request handler
 
 //get reuquest to get list of mountains
-app.get('/', mountainsLogController.getMountains, (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*').json(res.locals.mountains);
+app.get('/api/', mountainsLogController.getMountains, mountainsLogController.getUsers, (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*').json(res.locals.starterInfo);
 })
 
 // path to create a new user
-app.post('/createUser', mountainsLogController.getCountryId, mountainsLogController.createUser, (req, res) => {
+app.post('/api/createUser', mountainsLogController.getCountryId, mountainsLogController.createUser, (req, res) => {
   res.status(200).json(res.locals.newUser)
 })
 
 // post request to create a new trip
-app.post('/createTrip', 
+app.post('/api/createTrip', 
   mountainsLogController.getTripUsers, 
   mountainsLogController.getMountainId,
   mountainsLogController.createTrip, 
@@ -32,7 +32,7 @@ app.post('/createTrip',
 })
 
 //get request for specific user
-app.get('/getTrips/:users_id', mountainsLogController.getUserTrips, (req, res) => {
+app.get('/api/getTrips/:users_id', mountainsLogController.getUserTrips, (req, res) => {
   res.status(200).json(res.locals.tripData);
 })
 // path to add countries to db, will be comment out, done now just to create countries list in dbh

@@ -37,8 +37,8 @@ module.exports = {
   mode: 'development',
   devServer: {
     proxy: { // proxy URLs to backend development server
-      '/**': {
-        target: 'http://localhost:3000',
+      '/api/**': {
+        target: 'http://localhost:3000/',
         secure: false,
         changeOrigin: true,
       }
