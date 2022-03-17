@@ -4,12 +4,12 @@ import ReactDOM from 'react-dom';
 const CreateTrip = (props) => {
   const usersOptions = [];
   props.users.forEach((user) => {
-    usersOptions.push(<option value = {user.firstname}>{`${user.firstname} ${user.lastname}`}</option>)
+    usersOptions.push(<option key = {user._id} value = {user._id} label={`${user.firstname} ${user.lastname}`}></option>)
   })
 
   const mountainsOptions = [];
   props.mountains.forEach((mount) => {
-    mountainsOptions.push(<option value = {mount.mountname}>{`${mount.mountname}`}</option>)
+    mountainsOptions.push(<option key = {mount.id} value = {mount.mountname} label = {mount.mountname}></option>)
   })
 
   return (

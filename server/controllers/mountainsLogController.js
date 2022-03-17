@@ -80,6 +80,7 @@ mountainsLogController.createUser = (req, res, next) => {
 
 mountainsLogController.getTripUsers = (req, res, next) => {
   // get users from request query
+  console.log(req.body)
   const { users_ids } = req.body;
   const values = users_ids;
   // loop over users array to help add to db query

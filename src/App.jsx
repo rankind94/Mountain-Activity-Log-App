@@ -30,6 +30,23 @@ class App extends Component {
 
   createTripSubmit(e) {
     e.preventDefault();
+    const body = {
+      tripname: e.target[0].value,
+      tripstart: e.target[1].value,
+      tripsummit: e.target[2].value,
+      tripend: e.target[3].value,
+      mountname: e.target[4].value,
+      notes: e.target[5].value,
+      users_ids: [Number(e.target[6].value)],
+    }
+    fetch('/api/createTrip', {
+      'body': JSON.stringify(body),
+      'method': 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      }     
+    })
+    
     
   }
 
