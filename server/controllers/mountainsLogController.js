@@ -181,15 +181,17 @@ mountainsLogController.addTripsUsers = (req, res, next) => {
 }
 
 mountainsLogController.getUserTrips = async (req, res, next) => {
-  const { users_id } = req.params;
+  const { users_firstName } = req.params;
   let trips_ids;
   //get list of all trips logged for user in trips_users
   const tripsIdQuery = `
     SELECT trips_id
     FROM trips_users
-    WHERE users_id = $1;
+    INNER JOIN  users
+    ON trips_users.users_id = users._id
+    WHERE users.firstName = $1;
   `;
-  const tripsIdValues = [ users_id ];
+  const tripsIdValues = [ users_firstName];
 
   await db.query(tripsIdQuery, tripsIdValues)
     .then((data) => {
@@ -206,8 +208,7 @@ mountainsLogController.getUserTrips = async (req, res, next) => {
     
   //grab trip for from trips table
   let tripsQuery = `
-    SELECT trips.tripname, trips.tripstart, trips.tripsummit, trips.tripend, mountains.mountname, mountains.heightmeter, trips.notes,
-    users.firstName, users.lastname
+    SELECT trips.tripname, trips.tripstart, trips.tripsummit, trips.tripend, mountains.mountname, mountains.heightmeter, trips.notes
     FROM trips
     INNER JOIN mountains ON trips.mountain = mountains._id
     WHERE

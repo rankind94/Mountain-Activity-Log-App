@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import '../App.css';
 
 const CreateTrip = (props) => {
   const usersOptions = [];
@@ -39,12 +40,14 @@ const CreateTrip = (props) => {
         </label>
         <label>
           Notes:
-          <input type="text" name="notes" />
+          <textarea rows="5" cols="60" type="text" name="notes" />
         </label>
-        Users:
-        <select multiple = "" name='users[]'>
-          { usersOptions }
-        </select>
+        <label>
+          Users:
+          <select multiple = "" name='users[]'>
+            { usersOptions }
+          </select>
+        </label>
           
         <button type="submit">Submit</button>
       </form>

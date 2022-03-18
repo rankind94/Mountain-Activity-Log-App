@@ -32,7 +32,7 @@ app.post('/api/createTrip',
 })
 
 //get request for specific user
-app.get('/api/getTrips/:users_id', mountainsLogController.getUserTrips, (req, res) => {
+app.get('/api/getTrips/:users_firstName', mountainsLogController.getUserTrips, (req, res) => {
   res.status(200).json(res.locals.tripData);
 })
 // path to add countries to db, will be comment out, done now just to create countries list in dbh

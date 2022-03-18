@@ -1,0 +1,60 @@
+.create-trip {
+  display: flex;
+  flex-direction: column;
+}
+
+#create-trip-form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgb(99, 99, 17);
+}
+
+input, label, select {
+  margin: 5px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: rgb(73, 66, 66)
+  
+}
+
+.app {
+  text-align: center;
+}
+
+#header, h2 {
+  background-color: rgba(130, 173, 95, 0.781);
+  margin: 0px;
+  height: 15%;
+  color: rgb(214, 214, 13);
+}
+
+#header-container {
+  margin: 0px;
+  height: 80;
+}
+
+html, body, #create-trip-form {
+  height: 100%;
+  padding: 0px;
+  background-color: rgb(197, 211, 177);
+}
+body {
+  margin: 0;
+}
+
+textarea {
+  resize: none;
+  border-radius: 5px;
+  margin: 5px;
+  border-width: 2px;
+}
+
+button {
+  margin: 5px;
+  border-radius: 5px;
+  background-color: rgba(165, 173, 88, 0.781) ;
+}

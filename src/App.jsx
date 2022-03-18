@@ -11,15 +11,16 @@ class App extends Component {
       users: []
     }
     this.createTripSubmit = this.createTripSubmit.bind(this);
+    this.getUserTripData = this.getUserTripData.bind(this);
   }
 
 
 
   componentDidMount() {
+    this.getUserTripData();
     fetch('/api')
       .then(response => response.json())
       .then(json => {
-        console.log('json',json)
         const newStateObj = {};
         newStateObj['mountains'] = json[0].mountains;
         newStateObj['users'] = json[1].users;
@@ -28,6 +29,11 @@ class App extends Component {
       });
   }
 
+  getUserTripData() {
+    const user = prompt('Which users trips would you like to view?');
+    
+    
+  }
   createTripSubmit(e) {
     e.preventDefault();
     const body = {
@@ -46,15 +52,15 @@ class App extends Component {
         'Content-type': 'application/json'
       }     
     })
+      .then(() => alert('New Trip Added!'))
     
     
   }
 
   render () {
-    console.log(this.state)
     return (
-      <div className='App'>
-        <div><Header /></div>
+      <div className='app'>
+        <div className ='app'><Header /></div>
         <div><TripsContainer 
         createTripSubmit = {this.createTripSubmit} 
         users = {this.state.users}
