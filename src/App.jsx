@@ -8,7 +8,8 @@ class App extends Component {
     super(props);
     this.state = {
       mountains: [],
-      users: []
+      users: [],
+      curTrips: [], 
     }
     this.createTripSubmit = this.createTripSubmit.bind(this);
     this.getUserTripData = this.getUserTripData.bind(this);
@@ -30,9 +31,15 @@ class App extends Component {
   }
 
   getUserTripData() {
-    const user = prompt('Which users trips would you like to view?');
-    
-    
+    const user = prompt('Please enter first name of user');
+    fetch(`/api/gettrips/${user}`)
+      .then(response => response.json())
+      .then(json => {
+        const newStateObj = {};
+        newStateObj['curTrips'] = json;
+        this.setState({ curTrips: newStateObj.curTrips})
+      })
+
   }
   createTripSubmit(e) {
     e.preventDefault();
@@ -58,6 +65,7 @@ class App extends Component {
   }
 
   render () {
+    console.log('curTrips @ render', this.state.curTrips)
     return (
       <div className='app'>
         <div className ='app'><Header /></div>
@@ -65,6 +73,7 @@ class App extends Component {
         createTripSubmit = {this.createTripSubmit} 
         users = {this.state.users}
         mountains = {this.state.mountains}
+        curTrips = {this.state.curTrips}
          />
          </div>
       </div>
